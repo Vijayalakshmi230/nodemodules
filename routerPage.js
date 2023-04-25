@@ -20,7 +20,6 @@ let listOfServices=[
     
 ]
 
-
 router.get('/:id', (request,response)=>{
     const routerId = Number(request.params.id)
     const getRouter = listOfServices.find((router) => router.id === routerId)
@@ -31,9 +30,14 @@ router.get('/:id', (request,response)=>{
     }
     else
     {
-        response.json(getRouter)
+        response.send(getRouter.Name)
     }
 })
+router.param('id', (request, response, next, id) => {
+    console.log(id)
+    next()
+})
+
 
 
 module.exports=router
